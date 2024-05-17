@@ -19,6 +19,7 @@ runs:
         #fetch-depth: 0
 
     - name: cleanup
+      shell: bash
       run: |
         find . -name . -o -prune -exec rm -rf -- {} +
         # Delete all but the 5 most recent toolchains.
