@@ -40,7 +40,6 @@ runs:
     - name: 'Setup jq'
       uses: dcarbone/install-jq-action@v1.0.1
 
-
     - name: install elan
       shell: bash
       run: |
@@ -49,12 +48,23 @@ runs:
         ./elan-init -y --default-toolchain none
         echo "$HOME/.elan/bin" >> "${GITHUB_PATH}"
 
-    - name: print lean and lake versions
+    - name: print lean and lake versions, build cache, handle ProofWidgets, get cache
       shell: bash
       run: |
         lean --version
         lake --version
 
+        lake build cache
+
+        # The ProofWidgets release contains not just the `.js` (which we need in order to build)
+        # but also `.oleans`, which may have been built with the wrong toolchain.
+        # This removes them.
+        # See discussion at https://leanprover.zulipchat.com/#narrow/stream/287929-mathlib4/topic/nightly-testing/near/411225235
+        rm -rf .lake/packages/proofwidgets/.lake/build/lib
+        rm -rf .lake/packages/proofwidgets/.lake/build/ir
+
+        lake exe cache clean
+        lake exe cache get
 
     - name: list
       shell: bash
