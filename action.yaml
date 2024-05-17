@@ -1,6 +1,7 @@
 name: 'Get Mathlib with cache'
 description: 'Creates a working copy of Mathlib4 and its cache'
 runs:
+  using: "composite"
   steps:
     - name: Download_Mathlib4
       uses: actions/checkout@v4
