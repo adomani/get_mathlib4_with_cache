@@ -1,18 +1,19 @@
 name: 'Get Mathlib with cache'
 description: 'Creates a working copy of Mathlib4 and its cache'
-runs-on: ubuntu-latest
-steps:
-  - name: Download_Mathlib4
-    uses: actions/checkout@v4
-    with:
-      # Repository name with owner. For example, actions/checkout
-      # Default: ${{ github.repository }}
-      repository: 'leanprover-community/mathlib4'
-      # The branch, tag or SHA to checkout. When checking out the repository that
-      # triggered a workflow, this defaults to the reference or SHA for that event.
-      # Otherwise, uses the default branch.
-      #ref: ''
-      # Number of commits to fetch. 0 indicates all history for all branches and tags.
-      # Default: 1
-      fetch-depth: 0
-  - run: ls
+runs:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Download_Mathlib4
+      uses: actions/checkout@v4
+      with:
+        # Repository name with owner. For example, actions/checkout
+        # Default: ${{ github.repository }}
+        repository: 'leanprover-community/mathlib4'
+        # The branch, tag or SHA to checkout. When checking out the repository that
+        # triggered a workflow, this defaults to the reference or SHA for that event.
+        # Otherwise, uses the default branch.
+        #ref: ''
+        # Number of commits to fetch. 0 indicates all history for all branches and tags.
+        # Default: 1
+        fetch-depth: 0
+    - run: ls
