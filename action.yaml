@@ -18,6 +18,11 @@ runs:
         # Default: 1
         #fetch-depth: 0
 
+    - name: install Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.8
+
     - name: cleanup
       shell: bash
       run: |
