@@ -48,12 +48,14 @@ runs:
         ./elan-init -y --default-toolchain none
         echo "$HOME/.elan/bin" >> "${GITHUB_PATH}"
 
-    - name: print lean and lake versions, build cache, handle ProofWidgets, get cache
+    - name: get cache
       shell: bash
       run: |
+        #print lean and lake versions
         lean --version
         lake --version
 
+        #build cache
         lake build cache
 
         # The ProofWidgets release contains not just the `.js` (which we need in order to build)
@@ -63,6 +65,7 @@ runs:
         rm -rf .lake/packages/proofwidgets/.lake/build/lib
         rm -rf .lake/packages/proofwidgets/.lake/build/ir
 
+        #get the cache
         lake exe cache clean
         lake exe cache get
 
