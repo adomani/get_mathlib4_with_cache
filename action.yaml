@@ -4,6 +4,12 @@ runs:
   using: "composite"
   steps:
 
+    - if: github.repository MAIN_OR_FORK 'leanprover-community/mathlib4'
+      name: cleanup
+      shell: bash
+      run: |
+        find . -name . -o -prune -exec rm -rf -- {} +
+
     - name: Download_Mathlib4
       uses: actions/checkout@v4
       with:
