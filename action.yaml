@@ -29,7 +29,7 @@ runs:
         #ref: ''
         # Number of commits to fetch. 0 indicates all history for all branches and tags.
         # Default: 1
-        #fetch-depth: 0
+        fetch-depth: 0
 
     - name: install Python
       uses: actions/setup-python@v5
@@ -68,7 +68,3 @@ runs:
         #get the cache
         lake exe cache clean
         lake exe cache get
-
-    - name: list
-      shell: bash
-      run: ls
